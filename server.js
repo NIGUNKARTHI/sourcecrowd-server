@@ -8,20 +8,24 @@ const app = express();
 const campaignRoutes = require('./router/campaignRoutes');
 const authRoutes = require('./router/authRoutes');
 
-
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); 
-app.use(cors('*'));
+app.use(express.urlencoded({ extended: true }));
 
+app.use(cors({
+  origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'Authorization'], 
+}));
+
+// ✅ Routes
 app.use('/campaign', campaignRoutes);
 app.use('/auth', authRoutes);
 
 mongoose.connect("mongodb+srv://nigunkarthi:Rnk384726@cluster0.hdubx.mongodb.net/")
   .then(() => {
-    console.log('MongoDB connected');
+    console.log('✅ MongoDB connected');
     app.listen(9000, () => {
-      console.log(`Server running at http://localhost:9000`);
+      console.log(`🚀 Server running at http://localhost:9000`);
     });
   })
-  .catch(err => console.log('DB connection error:', err));
-
+  .catch(err => console.log('❌ DB connection error:', err));
