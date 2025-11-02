@@ -16,7 +16,7 @@ app.use(cors());
 app.use('/campaign', campaignRoutes);
 app.use('/auth', authRoutes);
 
-mongoose.connect("mongodb://localhost:27017/sourcecrowd")
+mongoose.connect("mongodb+srv://nigunkarthi:Rnk384726@cluster0.hdubx.mongodb.net/")
   .then(() => {
     console.log('MongoDB connected');
     app.listen(9000, () => {
